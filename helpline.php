@@ -125,7 +125,8 @@
 								var table = $('#tbval').DataTable();
 								table.row.add( [
 						data['data']['contacts']['regional'][i-1]['loc'],
-						data['data']['contacts']['regional'][i-1]['number']					
+						" <a style='color:#fff' href='tel:" + data['data']['contacts']['regional'][i-1]['number'] + "'> "+ data['data']['contacts']['regional'][i-1]['number'] + "</a>",
+											
 						
 							] ).draw();
 							}
@@ -134,11 +135,11 @@
 
 				$.get("https://api.rootnet.in/covid19-in/contacts",
 			function (data){
-				document.getElementById('total-case').innerHTML = data['data']['contacts']['primary']['number'];
-				document.getElementById('total-deaths').innerHTML = data['data']['contacts']['primary']['number-tollfree'];
-				document.getElementById('total-recovered').innerHTML = data['data']['contacts']['primary']['email'];
-				document.getElementById('new-case').innerHTML = data['data']['contacts']['primary']['twitter'];
-				document.getElementById('new-deaths').innerHTML = data['data']['contacts']['primary']['facebook'];
+				document.getElementById('total-case').innerHTML = "<a style='color:#fff' href='tel:" +data['data']['contacts']['primary']['number'] + "'>"+ data['data']['contacts']['primary']['number'] + "</a>";
+				document.getElementById('total-deaths').innerHTML = "<a style='color:#fff' href='tel:" + data['data']['contacts']['primary']['number-tollfree'] + "'>" + data['data']['contacts']['primary']['number-tollfree']  + "</a>";
+				document.getElementById('total-recovered').innerHTML = "<a style='color:#fff' href='mailto:" + data['data']['contacts']['primary']['email'] + "'>" + data['data']['contacts']['primary']['email'] + "</a>";
+				document.getElementById('new-case').innerHTML = "<a target='block' style='color:#fff' href='" +  data['data']['contacts']['primary']['twitter'] + "'>" + data['data']['contacts']['primary']['twitter']  + "</a>";
+				document.getElementById('new-deaths').innerHTML = "<a target='block' style='color:#fff' href='" + data['data']['contacts']['primary']['facebook'] + "'>" + data['data']['contacts']['primary']['facebook'] + "</a>";
 			}
 		)
 
