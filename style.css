@@ -1,0 +1,97 @@
+body {
+    background-color: #182139;
+    color: #c7c7c7;
+}
+nav{
+	background: #313852;
+}
+.jumbotron{	
+	padding: 1rem 1rem;
+}
+.main-body{
+	margin: 0 2%;
+}
+div.card-body i,div.card-body h3,div.card-body p{
+	color: #fff;
+	display: block;
+	text-align: center;
+}
+.bg-dark-gradient {
+    background: linear-gradient(230deg, #293134, #4b595f) !important;
+    color: white ;
+}
+.bg-danger-gradient {
+    background: linear-gradient(230deg, #ff4444, #ff9191) !important;
+    color: white !important;
+}
+.bg-primary-gradient {
+    background: linear-gradient(230deg, #26A69A, #44d4c7) !important;
+    color: white !important;
+}
+.bg-secondary-gradient {
+    background: linear-gradient(230deg, #aa66cc, #ca9fdf) !important;
+    color: white !important;
+}
+.bg-info-gradient {
+    background: linear-gradient(230deg, #33b5e5, #77ceee) !important;
+    color: white !important;
+}
+.bg-warning-gradient {
+    background: linear-gradient(230deg, #ffbb33, #ffd580) !important;
+    color: white !important;
+}
+tr:nth-child(2n+1) {
+  background: #313852 !important;
+}
+tr:nth-child(2n) {
+  background: #394451 !important;
+}
+#table-card{
+	background: #313852;
+    border-color: #444e72;
+}
+
+body .form-control, body .swal-modal input.swal-content__input, .swal-modal body input.swal-content__input {
+    background: #313852;
+    border-color: #454c66 !important;
+    color: #c3c3c3;
+}
+body .page-item.disabled .page-link {
+    background-color: #272e48;
+    border-color: rgba(240, 240, 240, 0.12);
+    color: inherit;
+}
+
+body .page-link {
+    background-color: inherit;
+    color: inherit;
+    border-color: rgba(240, 240, 240, 0.12);
+}
+}
+.table-bordered {
+    border: 1px solid rgba(152, 164, 185, 0.25);
+}
+body table {
+    color: #c7c7c7;
+    border: 1px solid #454d54 !important;
+}
+/*td{
+	border:  !important;
+}*/
+table.dataTable{
+	border-collapse: collapse !important;
+}
+#tbval_filter{
+	float:right;
+}
+.top{
+	padding: 15px 0;
+}
+table tr td img{
+	width: 29%;
+    margin: 0 18% 0 0;
+}
+#regions-card{
+	padding: 25px;
+	background: #313852;
+}
