@@ -10,8 +10,7 @@
 	</head>
 	<body onload="fetch()">
 		<!-- header Start -->
-		
-<nav class="navbar navbar-expand-lg navbar-dark">
+		<nav class="navbar navbar-expand-lg navbar-dark">
    <a class="navbar-brand" href="index.php" style="margin-right: 68px;"><img src="images/logo.png" ></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -37,14 +36,14 @@
 		<!-- header Ends -->
 
 		<div class="main-body">
-			<h1 align="center">India</h1><br>
+			<h1 align="center">Hospital Stats</h1><br>
 			<div class="row jumbotron">
 	<div class="col-lg-2 col-md-6 col-sm-12">
 		<div class="card bg-dark-gradient">
 		  <div class="card-body ">
 		    <i class="fa fa-ambulance fa-2x"></i></br>
 		    <h3 class="card-title " id="total-case"></h3>
-		    <p class="card-text">Total Cases</p>
+		    <p class="card-text">Total <br> Hospitals</p>
 		  </div>
 		</div>
 	</div>
@@ -54,7 +53,7 @@
 		  <div class="card-body ">
 		    <i class="fa fa-hotel fa-2x"></i></br>
 		    <h3 class="card-title " id="total-deaths"></h3>
-		    <p class="card-text">Total Deaths</p>
+		    <p class="card-text">Total <br> Beds</p>
 		  </div>
 		</div>
 	</div>
@@ -64,7 +63,7 @@
 		  <div class="card-body ">
 		    <i class="fa fa-heartbeat fa-2x"></i></br>
 		    <h3 class="card-title " id="total-recovered"></h3>
-		    <p class="card-text">Total Recovered</p>
+		    <p class="card-text">Total Hospital in Urban Area</p>
 		  </div>
 		</div>
 	</div>
@@ -74,7 +73,7 @@
 		  <div class="card-body ">
 		    <i class="fa fa-plus-circle fa-2x"></i></br>
 		    <h3 class="card-title " id="new-case"></h3>
-		    <p class="card-text">Active Case</p>
+		    <p class="card-text">Total Beds in Urban Area</p>
 		  </div>
 		</div>
 	</div>
@@ -84,7 +83,7 @@
 		  <div class="card-body ">
 		    <i class="fa fa-minus fa-2x"></i></br>
 		    <h3 class="card-title " id="new-deaths"></h3>
-		    <p class="card-text">Total Tests</p>
+		    <p class="card-text">Total Hospital in Rural Area</p>
 		  </div>
 		</div>
 	</div>
@@ -94,7 +93,7 @@
 		  <div class="card-body ">
 		    <i class="fa fa-exclamation-triangle fa-2x"></i></br>
 		    <h3 class="card-title " id="new-recovered"></h3>
-		    <p class="card-text">Critical Case</p>
+		    <p class="card-text">Total Beds in Rural Area</p>
 		  </div>
 		</div>
 	</div>
@@ -102,16 +101,19 @@
 </div>
 
 <br><br>
-			<h2 align="center">State Wise Data Of India</h2>
+			<h1 align="center">State Wise Data Of Hospitals</h1>
 			<div class="card" id="table-card">
 				<div class="table-responsive">
 				<table class="table table-bordered  table-dark" id="tbval">
 					<thead>
 						<tr>
 							<th>State</th>
-							<th scope="col">Total Confirmed</th>
-							<th scope="col">Total Discharged</th>
-							<th scope="col">Total Deaths</th>
+							<th scope="col">Total Hospitals</th>
+							<th scope="col">Total Beds</th>
+							<th scope="col">Hospitals in Urban Area</th>
+							<th scope="col">Beds in Urban Area</th>
+							<th scope="col">Hospitals in Rural Area</th>
+							<th scope="col">Beds in Rural Area</th>
 						</tr>
 					</thead>
 				</table>
@@ -130,36 +132,35 @@
 				const queryString = window.location.search;
 				const urlParams = new URLSearchParams(queryString);
 				const countryCode = urlParams.get('countrycode');
-				$.get("https://api.rootnet.in/covid19-in/stats/latest",
+				$.get("https://api.rootnet.in/covid19-in/hospitals/beds",
 					function (data){
 							for(var i=1; i<(data['data']['regional'].length); i++){
 								var table = $('#tbval').DataTable();
 								table.row.add( [
-						data['data']['regional'][i-1]['loc'],
-						data['data']['regional'][i-1]['totalConfirmed'],
-						data['data']['regional'][i-1]['discharged'],
-						data['data']['regional'][i-1]['deaths']
+						data['data']['regional'][i-1]['state'],
+						data['data']['regional'][i-1]['totalHospitals'],
+						data['data']['regional'][i-1]['totalBeds'],
+						data['data']['regional'][i-1]['urbanHospitals'],
+						data['data']['regional'][i-1]['urbanBeds'],							
+						data['data']['regional'][i-1]['ruralHospitals'],
+						data['data']['regional'][i-1]['ruralBeds']						
 						
 							] ).draw();
 							}
 					}
 				)
 
-				$.get("https://corona.lmao.ninja/v2/countries?yesterday=false&sort=todayCases",
+				$.get("https://api.rootnet.in/covid19-in/hospitals/beds",
 			function (data){
-				for(var i=1; i<(data.length); i++){
-					if(data[i-1]['country'] == 'India'){
-						document.getElementById('total-case').innerHTML = data[i-1]['cases'];
-				document.getElementById('total-deaths').innerHTML = data[i-1]['deaths'];
-				document.getElementById('total-recovered').innerHTML = data[i-1]['recovered'];
-				document.getElementById('new-case').innerHTML = data[i-1]['active'];
-				document.getElementById('new-deaths').innerHTML = data[i-1]['tests'];
-				document.getElementById('new-recovered').innerHTML = data[i-1]['critical'];
-					}
-				}
-				
+				document.getElementById('total-case').innerHTML = data['data']['summary']['totalHospitals'];
+				document.getElementById('total-deaths').innerHTML = data['data']['summary']['totalBeds'];
+				document.getElementById('total-recovered').innerHTML = data['data']['summary']['urbanHospitals'];
+				document.getElementById('new-case').innerHTML = data['data']['summary']['urbanBeds'];
+				document.getElementById('new-deaths').innerHTML = data['data']['summary']['ruralHospitals'];
+				document.getElementById('new-recovered').innerHTML = data['data']['summary']['ruralBeds'];
 			}
 		)
+
 
 			}
 		$(document).ready(function () {

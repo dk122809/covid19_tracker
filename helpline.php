@@ -10,8 +10,7 @@
 	</head>
 	<body onload="fetch()">
 		<!-- header Start -->
-		
-<nav class="navbar navbar-expand-lg navbar-dark">
+		<nav class="navbar navbar-expand-lg navbar-dark">
    <a class="navbar-brand" href="index.php" style="margin-right: 68px;"><img src="images/logo.png" ></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -35,16 +34,16 @@
   </div>
 </nav>
 		<!-- header Ends -->
-
+		<h1 align="center">Helpline No.</h1>
 		<div class="main-body">
-			<h1 align="center">India</h1><br>
+
 			<div class="row jumbotron">
 	<div class="col-lg-2 col-md-6 col-sm-12">
 		<div class="card bg-dark-gradient">
 		  <div class="card-body ">
-		    <i class="fa fa-ambulance fa-2x"></i></br>
+		    <i class="fas fa-phone-volume fa-2x"></i></br>
 		    <h3 class="card-title " id="total-case"></h3>
-		    <p class="card-text">Total Cases</p>
+		    <p class="card-text">Number</p>
 		  </div>
 		</div>
 	</div>
@@ -52,9 +51,9 @@
 	<div class="col-lg-2 col-md-6 col-sm-12">
 		<div class="card bg-danger-gradient">
 		  <div class="card-body ">
-		    <i class="fa fa-hotel fa-2x"></i></br>
+		    <i class="fas fa-phone-volume fa-2x"></i></br>
 		    <h3 class="card-title " id="total-deaths"></h3>
-		    <p class="card-text">Total Deaths</p>
+		    <p class="card-text">Tollfree <br> Number</p>
 		  </div>
 		</div>
 	</div>
@@ -62,56 +61,46 @@
 	<div class="col-lg-2 col-md-6 col-sm-12">
 		<div class="card bg-primary-gradient">
 		  <div class="card-body ">
-		    <i class="fa fa-heartbeat fa-2x"></i></br>
+		    <i class="fas fa-envelope-open-text fa-2x"></i></br>
 		    <h3 class="card-title " id="total-recovered"></h3>
-		    <p class="card-text">Total Recovered</p>
+		    <p class="card-text">Email</p>
 		  </div>
 		</div>
 	</div>
 
-	<div class="col-lg-2 col-md-6 col-sm-12">
+	<div class="col-lg-3 col-md-6 col-sm-12">
 		<div class="card bg-secondary-gradient">
 		  <div class="card-body ">
-		    <i class="fa fa-plus-circle fa-2x"></i></br>
+		    <i class="fab fa-twitter-square fa-2x"></i></br>
 		    <h3 class="card-title " id="new-case"></h3>
-		    <p class="card-text">Active Case</p>
+		    <p class="card-text">Twitter</p>
 		  </div>
 		</div>
 	</div>
 
-	<div class="col-lg-2 col-md-6 col-sm-12">
+	<div class="col-lg-3 col-md-6 col-sm-12">
 		<div class="card bg-info-gradient">
 		  <div class="card-body ">
-		    <i class="fa fa-minus fa-2x"></i></br>
+		    <i class="fab fa-facebook-f fa-2x"></i></br>
 		    <h3 class="card-title " id="new-deaths"></h3>
-		    <p class="card-text">Total Tests</p>
+		    <p class="card-text">Facebook</p>
 		  </div>
 		</div>
 	</div>
 
-	<div class="col-lg-2 col-md-6 col-sm-12">
-		<div class="card bg-warning-gradient">
-		  <div class="card-body ">
-		    <i class="fa fa-exclamation-triangle fa-2x"></i></br>
-		    <h3 class="card-title " id="new-recovered"></h3>
-		    <p class="card-text">Critical Case</p>
-		  </div>
-		</div>
-	</div>
+	
 
 </div>
 
 <br><br>
-			<h2 align="center">State Wise Data Of India</h2>
+			<h1 align="center">State Wise Helpline No.</h1>
 			<div class="card" id="table-card">
 				<div class="table-responsive">
 				<table class="table table-bordered  table-dark" id="tbval">
 					<thead>
 						<tr>
 							<th>State</th>
-							<th scope="col">Total Confirmed</th>
-							<th scope="col">Total Discharged</th>
-							<th scope="col">Total Deaths</th>
+							<th scope="col">Helpline No.</th>
 						</tr>
 					</thead>
 				</table>
@@ -130,36 +119,29 @@
 				const queryString = window.location.search;
 				const urlParams = new URLSearchParams(queryString);
 				const countryCode = urlParams.get('countrycode');
-				$.get("https://api.rootnet.in/covid19-in/stats/latest",
+				$.get("https://api.rootnet.in/covid19-in/contacts",
 					function (data){
-							for(var i=1; i<(data['data']['regional'].length); i++){
+							for(var i=1; i<(data['data']['contacts']['regional'].length); i++){
 								var table = $('#tbval').DataTable();
 								table.row.add( [
-						data['data']['regional'][i-1]['loc'],
-						data['data']['regional'][i-1]['totalConfirmed'],
-						data['data']['regional'][i-1]['discharged'],
-						data['data']['regional'][i-1]['deaths']
+						data['data']['contacts']['regional'][i-1]['loc'],
+						data['data']['contacts']['regional'][i-1]['number']					
 						
 							] ).draw();
 							}
 					}
 				)
 
-				$.get("https://corona.lmao.ninja/v2/countries?yesterday=false&sort=todayCases",
+				$.get("https://api.rootnet.in/covid19-in/contacts",
 			function (data){
-				for(var i=1; i<(data.length); i++){
-					if(data[i-1]['country'] == 'India'){
-						document.getElementById('total-case').innerHTML = data[i-1]['cases'];
-				document.getElementById('total-deaths').innerHTML = data[i-1]['deaths'];
-				document.getElementById('total-recovered').innerHTML = data[i-1]['recovered'];
-				document.getElementById('new-case').innerHTML = data[i-1]['active'];
-				document.getElementById('new-deaths').innerHTML = data[i-1]['tests'];
-				document.getElementById('new-recovered').innerHTML = data[i-1]['critical'];
-					}
-				}
-				
+				document.getElementById('total-case').innerHTML = data['data']['contacts']['primary']['number'];
+				document.getElementById('total-deaths').innerHTML = data['data']['contacts']['primary']['number-tollfree'];
+				document.getElementById('total-recovered').innerHTML = data['data']['contacts']['primary']['email'];
+				document.getElementById('new-case').innerHTML = data['data']['contacts']['primary']['twitter'];
+				document.getElementById('new-deaths').innerHTML = data['data']['contacts']['primary']['facebook'];
 			}
 		)
+
 
 			}
 		$(document).ready(function () {

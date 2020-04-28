@@ -7,11 +7,20 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://projects.nodetent.com/coronatracker/assets/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<style type="text/css">
+		nav .india{
+	    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+}
+	</style>
 </head>
 <body onload="fetch()">
 <!-- header Start -->
 <nav class="navbar ">
-  <a class="navbar-brand" href="/"><img src="images/logo.png"></a>
+  <a class="navbar-brand" href="index.php"><img src="images/logo.png"></a>
+
+  <a class="india btn btn-primary" href="corona.php">India Stats</a>
 </nav>
 <!-- header Ends -->
 <div class="main-body">

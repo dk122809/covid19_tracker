@@ -95,3 +95,122 @@ table tr td img{
 	padding: 25px;
 	background: #313852;
 }
+
+
+.breaking_news {
+  float:left;
+  width:100%;
+  font-family: arial;
+  font-size: 14px;
+  margin-bottom:10px;
+}
+.border_hl {
+  width: 936px;
+  padding:1px;
+  background-color: #D6002A; /* gold */
+  /* Single pixel data uri image http://jsfiddle.net/LPxrT/ 
+  /* background-image: gold, gold, white */
+  background-image: url('data:image/gif;base64,R0lGODlhAQABAPAAANYAKv///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='),  url('data:image/gif;base64,R0lGODlhAQABAPAAANYAKv///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='),
+url('data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==');
+  background-repeat: no-repeat;
+  background-size: 0 2px, 0 100%, 0% 2px;
+  background-position: top center, top center, bottom center;
+  -webkit-animation: drawBorderFromCenter 4s infinite;
+}
+.label {
+  float:left;
+  padding:6px 15px;
+  background:#D6002A;
+  color:#FFF;
+  width: 20%;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.news_title {
+  padding:5px 10px;
+  float:left;
+  background:#FFF;
+  width:80%;
+  border:1px solid #CCC;
+}
+
+/* Ripple magic */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, .5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+.ripple::after {
+  animation: ripple 1.5s ease-out  infinite;
+}
+
+
+/* Borderr Highlight Effect */
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes drawBorderFromCenter {
+    0% {
+      background-size: 0 2px, 0 0, 100% 100%;
+    }
+    20% {
+      background-size: 100% 2px, 100% 0, 100% 100%;
+    }
+    66%
+    {
+      background-size: 100% 2px, 100% 98%, 100% 100%;
+    }
+    99%
+    {
+      background-size: 100% 2px, 100% 98%, 0 2px;
+    }
+}
+.navbar-nav,
+.mr-auto {
+flex: 1;
+margin: auto !important;
+display: flex;
+justify-content: space-between;
+color: #fff;
+}
+nav a{
+	color: #fff;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .label{
+  	width:40%;
+  }
+  .news_title{
+  	width: 60%;
+  }
+}
