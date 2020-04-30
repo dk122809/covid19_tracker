@@ -1,5 +1,5 @@
 <h1>Covid19 Tracker</h1>
-This is a covid19 tracker which tells the people how many people is infected from covid19
+This is a covid19 tracker which tells the people how many people is infected from covid19<br>
 <b>*Note</b>:<p>This is specialy made for India</p>
 <h3>Some section realted to India:</h3>
 <ul>
